@@ -57,5 +57,7 @@ public class BoardServiceImpl implements BoardService {
 		//log2.printlogging();
 		return boardDAO.getBoardList(vo);
 	}
+	
+	
 
 }
