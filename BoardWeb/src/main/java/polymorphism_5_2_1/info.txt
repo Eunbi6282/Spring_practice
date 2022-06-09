@@ -1,0 +1,29 @@
+polymorphism_5_1_1 : 어노테이션 사용
+
+Bean(객체 설정)
+	1. xml설정 (src/main/resources) --> Spring Bean Configuration File생성
+		-- 자주 수정이 요구되는 설정
+	2. 어노테이션 설정
+		-- 자주 수정이 발생되지 않는 설정
+		-- Spring Bean Configuration File에서 어노테이션을 사용할 수 있도록 설정필요.
+			- Namespaces에서 context 추가
+			- context Namespaces 설정
+			<context:component-scan base-package="polymorphism_5_1_1"></context:component-scan>
+		-- 클래스 선언부 위에 @Component("tv")
+		-- @Component만 정의된 경우 클래스 이름의 첫자를 소문자로 로드
+		
+		(1) 객체 생성 어노테이션 (@Compenent)  // 모든 클래스를 @Compenent로 선언해두면 어떤 기능을 가진 클래스인지 구별 어려움 
+			-- 하위 어노테이션
+				1. @Service		xxxServiceImpl :비즈니스 로직을 처리하는 Service 클래스
+				2. @Repository	xxxDAO 		: DB연동을 처리하는 DAO클래스
+				3. @Controller	xxxController : 사용자 요청을 제어하는 Controller 클래스
+				
+		(2) 의존성 주입 어노테이션
+			1. @Autowired : 주로 변수 위에 설정. 해당 타입의 객체를 찾아서 주입 (Spring)
+				- 해당 타입의 객체가 여러개인 경우 @Qualifer를 사용해서 특정 이름을 지정
+			2. @Qualfier : 특정 객체의 이름을 이용해서 의존성 주입할 때 사용(Spring)
+			3. @Resource : @Autowired 와 @Qualfier을 합친 기능 (java)
+			4. @Inject : @Autowired와 동일한 기능(java)
+	3. 
+
+polymorphism_5_1_1 : 

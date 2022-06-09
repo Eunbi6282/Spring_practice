@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Spring FramWork에서 객체를 생성후 DI(의존성 주입)으로 객체를 주입한다. -->
+	<!-- SamSngTV 객체를 Spring FramWork에서 생성해서 DI(의존성 주입) -->
+	<!-- id : 객체명, class : 패키지명.클래스명-->
+	 
+		 <!-- 새로운 기능이나 변경 사항이 생겼을 떄 자바파일의 수정은 하지 않고 Bean파일만 생성해서 수정한다. 
+			<bean id = "tv" class = "polymorphism_3_1_2.DusanTV"></bean>	
+		 //polymorphism_3_1_2.SamSungTV or polymorphism_3_1_2.SkTV 로 바꿔서 객체 변경 가능
+		-->
+	
+	
+		<!--  scope 옵션 :
+				- singleton : 단 하나의 객체만 생성되도록 설정 (기본값)
+				- prototype : 여러개의 객체를 생성할 수 있도록 설정
+			<bean id = "tv" class = "polymorphism_4_1_2.SamSungTV" scope = "prototype"></bean>
+		-->
+	
+		<!-- init-method 옵션 : 빈에서 객체를 생성 후 호출하는 메서드 -->
+		<!--  destroy-method 옵션 : 객체 종료 직전에 호출되는 메서드
+		
+		<bean id = "tv" class = "polymorphism_4_1_2.SamSungTV" init-method = "initMethod"
+			destroy-method = "destroyMethod"></bean>
+		-->
+		
+		<!-- lazy-init 
+			Spring Container가 객체를 메모리에 로딩하는 방식 : Pre-loading 방식 (메모리에 즉시 로딩)
+			lazy-init = "true" : 요청이 있을 때만 메모리에 로딩
+			
+			<bean id = "tv" class = "polymorphism_4_1_2.SamSungTV" init-method = "initMethod"
+			destroy-method = "destroyMethod" lazy-init = "true"></bean>
+		-->
+		
+		<!-- 생성자에 객체 전달 
+			<bean> <constructor-arg rhef ="객체">
+				ref: 생성자 매개변수로 참조형 변수를 전달 (객체, 배열)
+				value: 생성자 매개변수로 기본 자료형(정수 , 문자열...)
+		-->		
+			<!--  argumnet가 있는 생성자 호출 ->  constructor-arg
+			<bean id = "tv" class = "polymorphism_4_2.SamSungTV" >
+				<constructor-arg ref = "sony"> </constructor-arg>
+			</bean>	
+				
+			 <bean id = "sony" class = "polymorphism_4_2.SonySpeaker"></bean>
+		 -->
+		 
+		 <!-- 생성자에 여러개의 매개변수 설정하기 (4_2_1)
+		 	// 첫번째 매개변수로 sony 던지고 두번째 매개변수로 300000 던져줌
+			 <bean id = "tv" class = "polymorphism_4_2_1.SamSungTV" >
+				<constructor-arg ref = "sony"> </constructor-arg>
+				<constructor-arg value = "3000000"> </constructor-arg>
+			</bean>	
+				
+			 <bean id = "sony" class = "polymorphism_4_2_1.SonySpeaker"></bean>
+		 -->
+		 
+		 <!-- 별도의 스피커 객체 생성 4_2_2: 인터페이스를 통한 설정 : (Speaker)
+			 <bean id = "tv" class = "polymorphism_4_2_2.SamSungTV" >
+				<constructor-arg ref = "apple"> </constructor-arg>
+			</bean>
+				
+			 <bean id = "apple" class = "polymorphism_4_2_2.AppleSpeaker"></bean>
+		 --> 
+		 
+		 <!-- Setter에 객체 주입 : 4_3_1 세팅사항
+		 		property name = speaker : setSpeaker()호출 
+		 		property name = price 	: setPrice()호출
+		
+			<bean id = "tv" class = "polymorphism_4_3_1.SamSungTV" >
+				<property name = "speaker" ref = "sony"></property>
+				<property name = "price" value = "3000000"></property>
+			</bean>	
+				
+			 <bean id = "sony" class = "polymorphism_4_3_1.SonySpeaker"></bean>
+			 -->
+			 
+		<!--  p네임 스페이스 사용하기 : 객체 주입을 쉽게 사용 : 4_3_2 
+			// namespaces 에서 p 선택하기
+			p : 변수명-ref = "참조할 객체 이름 or 아이디"	<== 참조 변수
+			p:변수명 = "설정값"				<== 기본변수
+		
+			<bean id = "tv" class = "polymorphism_4_3_1.SamSungTV" p:speaker-ref = "sony" p:price = "3000000">
+			</bean>	
+				
+			 <bean id = "sony" class = "polymorphism_4_3_1.SonySpeaker"></bean>
+		-->
+			
+</beans>
