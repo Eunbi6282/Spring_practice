@@ -1,7 +1,6 @@
 package com.springbook.biz.impl;
 
-import org.springframework.beans
-.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +36,9 @@ public class UserServiceImpl implements UserService {
 	
 	// 2.
 	//Setter를 사용해서 객체 주입
-		public void setUserDAO (UserDAO userDAO) {
-			this.userDAO = userDAO;
-		}
+//		public void setUserDAO (UserDAO userDAO) {
+//			this.userDAO = userDAO;
+//		}
 	
 	
 	@Override
@@ -51,6 +50,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertUser(UserVO vo) {
 		userDAO.insertUser(vo);
+		//userDAOSpring.insertUser(vo);
 	}
 	
 	

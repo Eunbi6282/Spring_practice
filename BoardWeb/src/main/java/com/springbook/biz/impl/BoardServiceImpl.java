@@ -32,6 +32,7 @@ public class BoardServiceImpl implements BoardService {
 		//	throw new IllegalArgumentException();
 		//}
 		boardDAO.insertBoard(vo);
+		//boardDAOSpring.insertBoard(vo);
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import com.springbook.biz.common.JDBCUtil;
 
 //Bean 등록 : 어노테이션 기반 빈 등록 @Component
 @Repository("boardDAO")
-public class BoardDAO {
+public class BoardDAO{
 	
 	//1. JDBC관련 변수 선언
 	private Connection conn = null;

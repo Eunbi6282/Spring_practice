@@ -1,0 +1,23 @@
+
+Transaction : 작업(일)을 처리하는 최소단위 
+	- All or Nothing : 전부 되게 하거나, 안되면 전부 안되게 함
+	- Insert, Update, Delete 구문에서 트랜잭션 발생
+	- Oracle DB : Insert, Update, Delete구문 앞에 begin Transaction 이 자동으로 등록, commit 명시 필요. 
+	- MSSQL, MYSQL : 자동 커밋됨 
+	- Connection 객체는 기본셋이 자동 commit;
+	- commi; 전까지는 메모리에서만 적용, commit;이후에는 db에 저장
+	- 모든 정보가 log에 기록이 됨. Transaction log
+	- 백업된 시점이 아니라, 오류가 발생된 시점 복구 
+	- 모든 Insert, Update, Delete구문 내에서 트랜잭션 처리 
+	
+	- Spring의 트랜잭션 처리는 AOP 사용해서 처리, xml설정에서만 설정가능 , 어노테이션을 사용할 수 없다. 
+	- Spring에서 트랜잭션 처리를 하기 위해서는 트랜잭션 관리자를 생성해야 한다. 
+	- Spring에서 트랜잭션 처리는 메서드 단위로 처리가 됨
+	 
+	ex) A -> B 1억 입금  //update 구문 2개 필요 => 하나의 Transaction 으로 처리되어야 함
+		(1) update A set -1억
+		(2) update B set +1억
+	
+	
+	
+	

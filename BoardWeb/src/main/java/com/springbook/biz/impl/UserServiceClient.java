@@ -30,7 +30,7 @@ public class UserServiceClient {
 			}
 			
 			// 3-2 insert메서드호출
-				vo.setId("user15");
+				vo.setId("user200");
 				vo.setPassword("1234");
 				vo.setName("홍길동2");
 				vo.setRole("user");

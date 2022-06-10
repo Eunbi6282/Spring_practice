@@ -10,7 +10,7 @@ import com.springbook.biz.common.JDBCUtil;
 import com.springbook.biz.user.UserVO;
 
 @Repository("userDAO") // UserDAO클래스를 객체화
-public class UserDAO implements UserService {
+public class UserDAO {
 	
 	// 1. JDBC관련 변수 선언(conn, pstmt, rs)
 	private Connection conn = null;
