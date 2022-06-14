@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+	<!--  Day 3 : Class 03 : 비즈니스 레이어 통합 (2 Layered 아키텍쳐 적용 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+	<!-- Spring MVC  -->
+	<filter>
+		<filter-name>characterEncoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>EUC-KR</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>characterEncoding</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	
+	
+		<!-- WEB-INF하위에 action-servlet.xml 을 기본적으로 로드함 -->
+		<!-- init-parm을 사용하면 원하는 이름과 원하는 경로로 설정 할 수 있다. --> 
+		
+	 
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
+		</init-param>
+		
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+		
+	
+
+
+  <!-- Day3 Class04 : MVC 프레임워크  -->
+   <!--   
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>com.springbook.view.mvcframework.controller.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+	-->
+
+  <!-- Day 3 Class03 최종 : MVC M2   -->
+  <!--  
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>com.springbook.view.controller.m2.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+   -->
+
+</web-app>
