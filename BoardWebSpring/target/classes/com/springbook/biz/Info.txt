@@ -1,0 +1,21 @@
+1. web.xml : Spring의 org.springframework.web.servlet.DispatcherServlet을 Controller로 작동
+2. Webapp\WEB-INF에 action-servlet.xml 파일이 spirngbean.xml설정파일으로 들어가 있어야 함
+3. web.xml 설정에서 action-servlet.xml의 이름이나 위치를 변경할 수 있다.
+	WEB-INF/config/presentation-layer.xml
+
+
+
+
+
+
+
+1. DispatcherSerlet : 모든 클라이언트 요청을 제일 먼저 처리 하는 Font End의 Controller
+2. HandlerMapping : 클라이언트 요청 정보를 처리할 Controller 를 매핑(알려줌)
+3. Controller : 실질적인 요청을 처리하는 Controller들 , 
+				Controller 인터페이스를 구현한 Controller 들 
+					( longinController, logoutController, insertBoardController....)
+			클라이언트 요청에 대한 작업을 완료 하고, (ViewResolver)에게 뷰페이지 알려줌. <== String
+4. ViewResolver : Controller가 리턴한 View 이름으로 실행될 JSP 완성해서 처리 
+
+
+			 
