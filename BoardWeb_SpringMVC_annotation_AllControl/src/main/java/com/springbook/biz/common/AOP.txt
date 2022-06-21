@@ -1,0 +1,131 @@
+AOP(Aspect Oriented Programming) 관점 지향 프로그래밍
+	 : 응집도를 높이는 기술 , 반복되는 코드의 응집도를 높여서 적용.
+	- 메소드가 작동될때 Advice 클래스에 저장된 메소드가 실행	(before, After...) 
+	- 로그처리, 예외처리, 트랜잭션 처리 <== 모든 메소드가 실행될때 마다 코딩해야 하는 부분  
+ 
+ - Advice : 반복되는 코드를 저장하고 있는 메소드(로그처리, 예외처리, 트랜잭션처리)를 가진 클래스 
+ - 핵심관심 (Core Concerns) : 메소드가 가지고 있는 실제 비즈니스 로직 
+ - 횡단관심 (Crosscutting Concerns) : 공통의 기능을 처리하는 로직 (로그, 예외처리, 트랜잭션 처리)
+
+ - 조인 포인트 : AOP가 호출하는 비즈니스 메소드 , BoardServiceImpl 클래스의 메소드들, 
+ 		UserServiceImpl 클래스 내부의 메소드들 
+ 		
+ - 포인트컷 : 필터링된 조인 포인트    (AOP 적용될 메소드를 필터링 설정) 
+ 		  : 공통 기능을 적용하기 위해서는 포인트컷 셋팅이 필요함.
+ 		   
+ -aspect : Advice (빈등록) + Pointcut   결합시킴. 
+ 		  
+ 	expression="execution(* com.springbook.biz..*Impl.*(..))"
+ 	
+ 	* 						: 리턴타입 
+ 	com.springbook.biz.		: 패키지 경로 
+	.*Impl					: 클래스명 (*Impl)
+	*(..)					: 메소드명, * : 모든 메소드 , (..) : 모든 매개변수 
+
+
+   *OOP (객체 지향 프로그래밍) : 완전하게 핵심관심과, 횡단 관심을 분리하기 어렵다. 
+   		Spring에서는 핵심관심과 횡단 관심을 완전하게 분리 해서 구현하기가 용이하다. 
+ 
+ advice : 각 조인 포인트에 삽입되어 동작할 횡단 관심에 해당하는 공통기능이 적용된 메소드 (기능) 
+ 
+ advice 의 동작 시점 : 
+   - Before			: 비즈니스 메소드(핵심관심) 실행 전 실행 
+   - After
+   		After-Returning : 메소드가 성공적으로 리턴되면 작동 
+   		After-Throwing  : 예외가 발생 되면 작동 
+   		After		: 비즈니스 메소드(핵심관심) 실행 후 실행
+   - Around : 비즈니스 메소드 실행 전후 실행됨. 
+   
+ JoinPoint 와 바인드 변수 
+  - JoinPoint (인터페이스) : 정의된 메소드를 사용하면 AOP에서 다양한 정보를 알아 올 수 가있다. 
+  
+  - Signature getSignature () : 클라이언트가 호출한 메소드의 시그니쳐 정보가 저장된 Signature 
+  		객체를 리턴
+  - Object getTarget() : 클라이언트가 호출한 비즈니스 메소드를 포함하는 비즈니스 객체 리턴 
+  - Object [] getArgs() : 클라이언트가 메소드를 호출할때 넘겨준 인자 목록으로 Object 배열로 리턴
+  
+  Before, After Returning, After Throwing, After  <== JoinPoint 를 사용
+  Around <== ProceedingJoinPoint를 매개변수로 사용해야함. 
+  
+  getSignature() 메소드를 사용하면 다양 정보를 알 수 있다. 
+     - String getName () : 클라이언트가 호출한 메소드 이름을 리턴
+     - String toLongString() : 클라이언트가 호출한 메소드의 리턴타입, 이름, 매개변수를 
+     			패키지 경로까지 포함하여 리턴
+     - String toShortString() : 클라이언트가 호출한 메소드 시그니쳐를 축약한 문자열로 리턴
+  
+ 
+ 1. AOP 라이브러리 등록 (pom.xml)
+ 		<!--AOP 라이브러리 추가 시작--> 
+		<dependency>
+			<groupId>org.aspectj</groupId> 
+			<artifactId>aspectjrt</artifactId> 
+			<version>${org.aspect-version}</version> 
+		</dependency> 
+		<dependency>
+			<groupId>org.aspectj</groupId> 
+			<artifactId>aspectjweaver</artifactId> 
+			<version>1.8.8</version> 
+		</dependency> 
+		<!--AOP 라이브러리 추가 끝--> 
+		
+ 2. AOP 설정 ( applicationContext.xml ) 
+ 	- NameSpace 에서 : AOP 등록 
+ 	------------------------------------------------------
+ 	<bean id = "log" class = "com.springbook.biz.common.LogMyAdvice"></bean>
+
+	<!-- AOP 설정  -->
+	<aop:config>
+	 <aop:pointcut expression="execution(* com.springbook.biz..*Impl.*(..))" id="allPointcut"/>
+	 
+	 <aop:aspect ref= "log">
+	 	<aop:before pointcut-ref = "allPointcut" method="printMyLog"/>
+	 </aop:aspect>
+	
+	</aop:config>
+    -------------------------------------------------------------------
+ 	
+ 
+ 
+ 어노테이션 기반 AOP 
+ 
+1. Bean 설정 파일에서 구성 ( applicationContext.xml ) 
+ <!--  AOP 어노테이션을 검색할 수 있도록 설정  -->
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>	
+
+2. Advice 클래스에서 어노테이션 사용. 
+   @Service 
+   @Aspect      // Pointcut + Advice   
+   
+   @Pointcut("execution (* com.springbook.biz..*Impl.*(..))")
+   public void allPointCut () {} 
+   
+   @Before("allPointCut()")
+   
+
+3. Advice 시작 어노테이션들 ( Advice 메소드 위에 설정함, 포인트컷이 등록 되어야함. )
+	- @Before("포인트컷메소드()") : 비즈니스 메소드 시작전 작동
+	- @AfterReturning		  : 비즈니스 메소드의 리턴이 성공적으로 되면 작동
+	- @AfterThrowing		  : 비즈니스 메소드의 예외가 발생되면 작동
+	- @After				  : 비즈니스 메소드 작동이후 작동 
+	- @Around 				  : 비즈니스 메소드 전,후 작동 
+	
+	
+	
+	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 
+ 
