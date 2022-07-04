@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="join">
+
+<resultMap type="emp" id="empMap">
+	<id property="eno" column="ENO"/>
+	<result property="ename" column="ENAME"/>
+	<result property="job" column="JOB"/>
+	<result property="manager" column="MANAGER"/>
+	<result property="hiredate" column="HIREDATE"/>
+	<result property="salary" column="SALARY"/>
+	<result property="commission" column="COMMISSION"/>
+	<result property="dno" column="DNO"/>
+</resultMap>
+<resultMap type="dept" id="deptMap">
+	<id property="dno" column="DNO"/>
+	<result property="dname" column="DNAME"/>
+	<result property="loc" column="LOC"/>
+</resultMap>
+
+<!-- 두 ResultMap을 처리하는 ResultMap -->
+<resultMap type="joinvo" id="joinMap">
+	<collection property="empJ" resultMap="empMap" />
+	<collection property="deptJ" resultMap="deptMap" />
+</resultMap>
+
+
+<insert id="insertJoin">
+	<![CDATA[
+		
+	]]>
+</insert>
+
+<update id="updateJoin">
+	<![CDATA[
+		
+	]]>
+</update>
+
+<delete id="deleteJoin">
+	<![CDATA[
+		
+	]]>
+</delete>
+
+<select id="selectOneJoin" resultType="joinvo">
+	<![CDATA[
+		
+	]]>
+</select>
+
+<select id="selectListJoin" resultMap="joinMap">
+	<![CDATA[
+		SELECT E.ENO, E.ENAME, E.JOB, E.MANAGER, E.HIREDATE, E.SALARY, E.COMMISSION,
+	    	   D.DNO, D.DNAME, D.LOC
+		FROM EMPLOYEE E, DEPARTMENT D
+		WHERE E.DNO = D.DNO
+	]]>
+</select>
+
+<select id="selectListJoin2" resultType="edvo">
+	<![CDATA[
+		SELECT E.ENO, E.ENAME, E.JOB, E.MANAGER, E.HIREDATE, E.SALARY, E.COMMISSION,
+	    	   D.DNO, D.DNAME, D.LOC
+		FROM EMPLOYEE E, DEPARTMENT D
+		WHERE E.DNO = D.DNO
+	]]>
+</select>
+
+<select id = "selectJoin3" resultMap = "allJoin">
+	<![CDATA[
+	SELECT * 
+	FROM EMPLOYEES E, DEPARTMENTS D, JOB_HISTORY J, LOCATIONS L
+	WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+    AND D.LOCATION_ID = L.LOCATION_ID
+    AND D.DEPARTMENT_ID = J.DEPARTMENT_ID
+	]]>
+</select>
+
+
+<select id = "selectJoin4" resultType = "allJoinvo2">
+	<![CDATA[
+	SELECT * 
+	FROM EMPLOYEES E, DEPARTMENTS D, JOB_HISTORY J, LOCATIONS L
+	WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+    AND D.LOCATION_ID = L.LOCATION_ID
+    AND D.DEPARTMENT_ID = J.DEPARTMENT_ID
+	]]>
+</select>
+
+<!-- resultMap 4개 엮는 resultMap -->
+
+<resultMap type="allJoinvo" id="allJoin">
+	<collection property="empsJ" resultMap = "empsMap"></collection>
+	<collection property="deptsJ" resultMap = "deptsMap"></collection>
+	<collection property="jhisJ" resultMap = "jhisMap"></collection>
+	<collection property="locJ" resultMap = "locMap"></collection>
+</resultMap>
+
+<resultMap type = "emps" id = "empsMap">
+	<id property = "employee_id" column = "EMPLOYEE_ID"></id>
+	<result property = "first_name" column = "FIRST_NAME"/>
+	<result property = "last_name" column = "LAST_NAME"/>
+	<result property = "email" column = "EMAIL"/>
+	<result property = "phone_number" column = "PHONE_NUMBER"/>
+	<result property = "hire_date" column = "HIRE_DATE"/>
+	<result property = "job_id" column = "JOB_ID"/>
+	<result property = "salary" column = "SALARY"/>
+	<result property = "commission_pct" column = "COMMISSION_PCT"/>
+	<result property = "manager_id" column = "MANAGER_ID"/>
+	<result property = "department_id" column = "DEPARTMENT_ID"/>
+</resultMap>
+
+<resultMap type = "depts" id = "deptsMap">
+	<id property = "department_id" column = "DEPARTMENT_ID"></id>
+	<result property = "department_name" column = "DEPARTMENT_NAME"/>
+	<result property = "manager_id" column = "MANAGER_ID"/>
+	<result property = "location_id" column = "LOCATION_ID"/>
+</resultMap>
+
+<resultMap type = "loc" id = "locMap">
+	<id property = "location_id" column = "LOCATION_ID"></id>
+	<result property = "street_address" column = "STREET_ADDRESS"/>
+	<result property = "postal_code" column = "POSTAL_CODE"/>
+	<result property = "city" column = "CITY"/>
+	<result property = "state_province" column = "STATE_PROVINCE"/>
+	<result property = "country_id" column = "COUNTRY_ID"/>
+</resultMap>
+
+<resultMap type = "jhis" id = "jhisMap">
+	<id property = "start_date" column = "START_DATE"></id>
+	<result property = "employee_id" column = "EMPLOYEE_ID"/>
+	<result property = "end_date" column = "END_DATE"/>
+	<result property = "job_id" column = "JOB_ID"/>
+	<result property = "department_id" column = "DEPARTMENT_ID"/>
+</resultMap>
+
+
+
+</mapper>

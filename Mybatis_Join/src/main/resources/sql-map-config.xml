@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<typeAliases>
+		<typeAlias type="com.springbook.biz.board.BoardVO" alias="board"></typeAlias>
+		<typeAlias type="com.springbook.biz.user.UserVO" alias="user"/>
+		<typeAlias type="com.mybatis.join.vo.DepartmentVO" alias="dept"/>
+		<typeAlias type="com.mybatis.join.vo.EmployeeVO" alias="emp"/>
+		<typeAlias type="com.mybatis.join.vo.JoinVO" alias="joinvo"/>
+		<typeAlias type = "com.mybatis.join.vo2.Semployment" alias="semp"/>
+		<typeAlias type = "com.mybatis.join.vo2.Sdepartment" alias = "sdept"/>
+		<typeAlias type = "com.mybatis.join.vo2.SjoinVO" alias = "sjoinvo"/>
+		<typeAlias type="com.mybatis.join.vo.JoinVO" alias="edvo"/>
+		
+		<!-- resultMap용 -->
+		<typeAlias type="com.mybatis.join.vo.AllJoinvo" alias="allJoinvo"/>
+		<typeAlias type="com.mybatis.join.vo.EmploymentsVO" alias="emps"/>
+		<typeAlias type="com.mybatis.join.vo.DepartmentsVO" alias="depts"/>
+		<typeAlias type="com.mybatis.join.vo.JobHistoryVO" alias="jhis"/>
+		<typeAlias type="com.mybatis.join.vo.LocationsVO" alias="loc"/>
+		
+		<!-- resultType용 -->
+		<typeAlias type="com.mybatis.join.vo.AllJoinvo2" alias="allJoinvo2"/>
+		
+	</typeAliases>
+	 
+	<mappers>
+		<mapper resource="mappings/board-mapping.xml" />
+		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/join-mapping.xml" />
+		<mapper resource="mappings/sjoin-mapping.xml" />
+	</mappers>
+</configuration>
