@@ -26,13 +26,14 @@
 	  			   F_ADMIN,
 	  			   F_NY,
 	  			   F_NX,
-	  			   ROW_NUMBER() OVER(ORDER BY F_CODE) AS RNUM
+	  			   ROW_NUMBER() OVER(ORDER BY F_STARTDATE) AS RNUM
 	  		FROM FESTIVAL
 	  		WHERE 1 = 1
 	  		<include refid="fsearch"></include>
+	  		
   		) FE
   		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-  		ORDER BY F_CODE
+  		ORDER BY F_STARTDATE
   	</select>
   	
   	<select id="flistCount" parameterType="kr.co.vo.SearchCriteria" resultType="int">
@@ -47,8 +48,8 @@
 		<if test="searchType != null">
 			<if test="searchType == 'admin'.toString()">AND F_ADMIN LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'name'.toString()">AND F_NAME LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'sdate'.toString()">AND F_STARTDATE LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'edate'.toString()">AND F_ENDDATE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'sdate'.toString()"><![CDATA[ AND '${keyword}' < F_STARTDATE ]]></if>
+			<if test="searchType == 'edate'.toString()"> <![CDATA[AND '${keyword}' < F_ENDDATE]]></if>
 		</if>
 	</sql>
   
