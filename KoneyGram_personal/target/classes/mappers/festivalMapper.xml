@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace = "festivalMapper">
+  
+  	<!-- 축제 목록 가져오기 -->
+  	<select id = "listfestival" resultType="kr.co.vo.FestivalVO">
+  		SELECT F_NAME, F_PLACE, F_STARTDATE, F_ENDDATE, F_CONTENT, F_MAINC, F_SUBC, F_SPONC, F_TEL, F_HOME, F_INFO, F_ROADADDRESS, F_GNUMADDRESS, F_NY, F_NX 
+		FROM FESTIVAL
+  	</select>
+  
+  
+  
+  </mapper>
