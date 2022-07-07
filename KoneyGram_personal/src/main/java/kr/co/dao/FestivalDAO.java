@@ -8,7 +8,10 @@ import kr.co.vo.SearchCriteria;
 public interface FestivalDAO {
 	
 	// 축제 목록 조회
-	public List<FestivalVO> listFestival (FestivalVO vo) throws Exception;
+	public List<FestivalVO> listFestival (SearchCriteria scri) throws Exception;
+	
+	//축제 총 갯수
+	public int listFCount(SearchCriteria scri) throws Exception;
 	
 	
 	

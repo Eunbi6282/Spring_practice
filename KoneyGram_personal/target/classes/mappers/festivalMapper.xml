@@ -6,10 +6,51 @@
   <mapper namespace = "festivalMapper">
   
   	<!-- 축제 목록 가져오기 -->
-  	<select id = "listfestival" resultType="kr.co.vo.FestivalVO">
-  		SELECT F_NAME, F_PLACE, F_STARTDATE, F_ENDDATE, F_CONTENT, F_MAINC, F_SUBC, F_SPONC, F_TEL, F_HOME, F_INFO, F_ROADADDRESS, F_GNUMADDRESS, F_NY, F_NX 
-		FROM FESTIVAL
+  	<select id = "listfestival" resultType="kr.co.vo.FestivalVO" parameterType="kr.co.vo.SearchCriteria">
+  		SELECT F_CODE, 
+  			   F_NAME, 
+  			   F_PLACE, 
+  			   F_STARTDATE, 
+  			   F_ENDDATE, 
+  			   F_TEL, 
+  			   F_ADMIN,
+  			   F_NY,
+  			   F_NX
+  		FROM (
+  			SELECT F_CODE, 
+	  			   F_NAME, 
+	  			   F_PLACE, 
+	  			   F_STARTDATE, 
+	  			   F_ENDDATE, 
+	  			   F_TEL, 
+	  			   F_ADMIN,
+	  			   F_NY,
+	  			   F_NX,
+	  			   ROW_NUMBER() OVER(ORDER BY F_CODE) AS RNUM
+	  		FROM FESTIVAL
+	  		WHERE 1 = 1
+	  		<include refid="fsearch"></include>
+  		) FE
+  		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+  		ORDER BY F_CODE
   	</select>
+  	
+  	<select id="flistCount" parameterType="kr.co.vo.SearchCriteria" resultType="int">
+		SELECT COUNT(F_CODE)
+		   FROM FESTIVAL
+		   WHERE 1=1
+		<include refid="fsearch"></include>	
+		   AND F_CODE > 0
+	</select>
+	
+	<sql id="fsearch">
+		<if test="searchType != null">
+			<if test="searchType == 'admin'.toString()">AND F_ADMIN LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'name'.toString()">AND F_NAME LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'sdate'.toString()">AND F_STARTDATE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'edate'.toString()">AND F_ENDDATE LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
   
   
   

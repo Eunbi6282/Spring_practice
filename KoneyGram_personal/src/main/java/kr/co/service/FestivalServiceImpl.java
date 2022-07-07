@@ -17,9 +17,17 @@ public class FestivalServiceImpl implements FestivalService{
 	private FestivalDAO dao;
 
 	@Override
-	public List<FestivalVO> listFestival(FestivalVO vo) throws Exception {
-		return dao.listFestival(vo);
+	public List<FestivalVO> listFestival(SearchCriteria scri) throws Exception {
+		return dao.listFestival(scri);
 	}
+
+	// 축제 총 개수
+	@Override
+	public int listFCount(SearchCriteria scri) throws Exception {
+		return dao.listFCount(scri);
+	}
+	
+	
 	
 	
 }

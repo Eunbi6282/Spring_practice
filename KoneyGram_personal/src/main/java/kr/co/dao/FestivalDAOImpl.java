@@ -18,8 +18,13 @@ public class FestivalDAOImpl implements FestivalDAO{
 
 	// 
 	@Override
-	public List<FestivalVO> listFestival(FestivalVO vo) throws Exception {
-		return sql.selectList("festivalMapper.listfestival", vo);
+	public List<FestivalVO> listFestival(SearchCriteria scri) throws Exception {
+		return sql.selectList("festivalMapper.listfestival", scri);
+	}
+
+	@Override
+	public int listFCount(SearchCriteria scri) throws Exception {
+		return sql.selectOne("festivalMapper.flistCount", scri);
 	}
 	
 	

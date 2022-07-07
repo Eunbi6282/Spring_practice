@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.service.FestivalService;
 import kr.co.vo.FestivalVO;
+import kr.co.vo.PageMaker;
+import kr.co.vo.SearchCriteria;
 
 @Controller
 @RequestMapping("/festival")
@@ -23,10 +25,16 @@ public class FestivalController {
 	
 	// 게시판 목록
 	@RequestMapping(value = "/listf", method = RequestMethod.GET)
-	public String listFestival(Model model, FestivalVO vo) throws Exception{
+	public String listFestival(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("listFestival");
 		
-		model.addAttribute("list",fservice.listFestival(vo));
+		model.addAttribute("list",fservice.listFestival(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(fservice.listFCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "festival/listf";
 		
