@@ -48,8 +48,8 @@
 		<if test="searchType != null">
 			<if test="searchType == 'admin'.toString()">AND F_ADMIN LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'name'.toString()">AND F_NAME LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'sdate'.toString()"><![CDATA[ AND '${keyword}' < F_STARTDATE ]]></if>
-			<if test="searchType == 'edate'.toString()"> <![CDATA[AND '${keyword}' < F_ENDDATE]]></if>
+		<!-- <if test="searchType == 'sdate'.toString()"><![CDATA[ AND '${keyword}' < F_STARTDATE ]]></if>  -->	
+			<if test="searchType == 'sdate'.toString()"> AND (TO_DATE(#{keyword},'YYYY-MM-DD') BETWEEN TO_DATE(F_STARTDATE,'YYYY-MM-DD') AND TO_DATE(F_ENDDATE,'YYYY-MM-DD'))</if>
 		</if>
 	</sql>
   

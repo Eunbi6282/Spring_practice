@@ -10,6 +10,9 @@
 	 	<style type="text/css">
 			li {list-style: none; float: left; padding: 6px;}
 		</style>
+		
+		
+		
 	</head>
 	<body>
 	<jsp:include page="kmap.jsp"></jsp:include>
@@ -20,18 +23,29 @@
 			<hr />
 			
 			<hr />
+		     
 			<div class="search">
-			    <select name="searchType">
+			    <select name="searchType" id="searchType" onchange = "dateChange()">
 			      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
 			      <option value="admin"<c:out value="${scri.searchType eq 'admin' ? 'selected' : ''}"/>>지역</option>
 			      <option value="name"<c:out value="${scri.searchType eq 'name' ? 'selected' : ''}"/>>축제 이름</option>
-			      <option value="sdate"<c:out value="${scri.searchType eq 'sdate' ? 'selected' : ''}"/>>시작일</option>
-			      <option value="edate"<c:out value="${scri.searchType eq 'edate' ? 'selected' : ''}"/>>종료일</option>
+			      <option value="sdate" <c:out value="${scri.searchType eq 'sdate' ? 'selected' : ''}"/>>시작일</option>
 			    </select>
-			
-			    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+			    
+	    		<input type="text" class = "searchBox" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+				
 			
 			    <button id="searchBtn" type="button">검색</button>
+			    <!-- 날짜 타입 변환 -->
+			    <script type ="text/javascript">
+			        function dateChange() {
+			        	var inputBox = document.getElementById('keywordInput');
+			        	this.value == 'sdate' ? inputBox.type = 'date' : inputBox.type = 'text';
+			        	
+			        }
+			        	document.getElementById('searchType').addEventListener('change', dateChange);
+				
+				</script> 
 			    <script>
 			      $(function(){
 			        $('#searchBtn').click(function() {
