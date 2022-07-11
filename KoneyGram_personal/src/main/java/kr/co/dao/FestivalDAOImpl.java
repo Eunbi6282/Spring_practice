@@ -16,16 +16,27 @@ public class FestivalDAOImpl implements FestivalDAO{
 	@Inject
 	private SqlSession sql;
 
-	// 
+	// 축제 list
 	@Override
 	public List<FestivalVO> listFestival(SearchCriteria scri) throws Exception {
 		return sql.selectList("festivalMapper.listfestival", scri);
 	}
 
+	// 축제 count
 	@Override
 	public int listFCount(SearchCriteria scri) throws Exception {
 		return sql.selectOne("festivalMapper.flistCount", scri);
 	}
+
+	// list by admin
+	@Override
+	public List<FestivalVO> listByAdmin(SearchCriteria scri) throws Exception {
+		return sql.selectList("festivalMapper.selectByAdmin", scri);
+	}
+	
+	
+	
+	
 	
 	
 	

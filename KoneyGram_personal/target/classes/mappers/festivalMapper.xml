@@ -33,6 +33,7 @@
 	  		
   		) FE
   		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+  		
   		ORDER BY F_STARTDATE
   	</select>
   	
@@ -52,7 +53,39 @@
 			<if test="searchType == 'sdate'.toString()"> AND (TO_DATE(#{keyword},'YYYY-MM-DD') BETWEEN TO_DATE(F_STARTDATE,'YYYY-MM-DD') AND TO_DATE(F_ENDDATE,'YYYY-MM-DD'))</if>
 		</if>
 	</sql>
-  
-  
+	
+	
+	<!-- 지도 클릭하면 각 도에 맞는 목록만 나옴 -->
+   <select id = "selectByAdmin" resultType="kr.co.vo.FestivalVO" parameterType="kr.co.vo.SearchCriteria">
+
+	  		SELECT  F_CODE, 
+		  			   F_NAME, 
+		  			   F_PLACE, 
+		  			   F_STARTDATE, 
+		  			   F_ENDDATE, 
+		  			   F_TEL, 
+		  			   F_ADMIN,
+		  			   F_NY,
+		  			   F_NX
+		  	FROM (
+	  			SELECT F_CODE, 
+		  			   F_NAME, 
+		  			   F_PLACE, 
+		  			   F_STARTDATE, 
+		  			   F_ENDDATE, 
+		  			   F_TEL, 
+		  			   F_ADMIN,
+		  			   F_NY,
+		  			   F_NX,
+		  			   ROW_NUMBER() OVER(ORDER BY F_STARTDATE) AS RNUM
+	  		FROM FESTIVAL
+	  		WHERE 1 = 1
+	  		<include refid="fsearch"></include>
+	  		AND F_ADMIN = #{f_admin}
+	  		) FE
+	  		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+	  		
+	  		ORDER BY F_STARTDATE		   
+  	</select>   
   
   </mapper>

@@ -11,4 +11,7 @@ public interface FestivalService {
 	
 	// 게시물 총 갯수
 	public int listFCount(SearchCriteria scri) throws Exception;
+	
+	// 축제 by admin
+	public List<FestivalVO> listByAdmin (SearchCriteria scri) throws Exception;
 }

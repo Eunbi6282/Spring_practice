@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.service.FestivalService;
 import kr.co.vo.FestivalVO;
@@ -36,7 +37,25 @@ public class FestivalController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
+		
+		
 		return "festival/listf";
+	}
+		
+	@RequestMapping(value = "/listfByAdmin", method = RequestMethod.GET)
+	public String listByAdmin (Model model, FestivalVO vo, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		
+		model.addAttribute("list",fservice.listByAdmin(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(fservice.listFCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "festival/listfByAdmin";
 		
 	}
+		
+	
 }

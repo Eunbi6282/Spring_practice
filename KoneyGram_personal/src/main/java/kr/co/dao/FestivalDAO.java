@@ -13,6 +13,8 @@ public interface FestivalDAO {
 	//축제 총 갯수
 	public int listFCount(SearchCriteria scri) throws Exception;
 	
+	//축제 By admin
+	public List<FestivalVO> listByAdmin (SearchCriteria scri) throws Exception;	
 	
 	
 }

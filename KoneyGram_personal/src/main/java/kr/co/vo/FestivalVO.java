@@ -1,6 +1,7 @@
 package kr.co.vo;
 
 public class FestivalVO {
+	private int f_code;
 	private String f_name;
 	private String f_place;
 	private String f_startdate;
@@ -13,11 +14,24 @@ public class FestivalVO {
 	private String f_home;
 	private String f_info;
 	private String f_roadaddress;
+	private String f_admin;
 	private String f_gnumaddress;
 	private int f_ny;
 	private int f_nx;
 	
 	
+	public int getF_code() {
+		return f_code;
+	}
+	public void setF_code(int f_code) {
+		this.f_code = f_code;
+	}
+	public String getF_admin() {
+		return f_admin;
+	}
+	public void setF_admin(String f_admin) {
+		this.f_admin = f_admin;
+	}
 	public String getF_name() {
 		return f_name;
 	}
@@ -110,11 +124,13 @@ public class FestivalVO {
 	}
 	@Override
 	public String toString() {
-		return "FestivalVO [f_name=" + f_name + ", f_place=" + f_place + ", f_startdate=" + f_startdate + ", f_enddate="
-				+ f_enddate + ", f_content=" + f_content + ", f_mainc=" + f_mainc + ", f_subc=" + f_subc + ", f_sponc="
-				+ f_sponc + ", f_tel=" + f_tel + ", f_home=" + f_home + ", f_info=" + f_info + ", f_roadaddress="
-				+ f_roadaddress + ", f_gnumaddress=" + f_gnumaddress + ", f_ny=" + f_ny + ", f_nx=" + f_nx + "]";
+		return "FestivalVO [f_code=" + f_code + ", f_name=" + f_name + ", f_place=" + f_place + ", f_startdate="
+				+ f_startdate + ", f_enddate=" + f_enddate + ", f_content=" + f_content + ", f_mainc=" + f_mainc
+				+ ", f_subc=" + f_subc + ", f_sponc=" + f_sponc + ", f_tel=" + f_tel + ", f_home=" + f_home
+				+ ", f_info=" + f_info + ", f_roadaddress=" + f_roadaddress + ", f_admin=" + f_admin
+				+ ", f_gnumaddress=" + f_gnumaddress + ", f_ny=" + f_ny + ", f_nx=" + f_nx + "]";
 	}
+
 	
 	
 }
