@@ -33,24 +33,24 @@
 	  		
   		) FE
   		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+  		ORDER BY F_STARTDATE DESC
   		
-  		ORDER BY F_STARTDATE
   	</select>
   	
   	<select id="flistCount" parameterType="kr.co.vo.SearchCriteria" resultType="int">
 		SELECT COUNT(F_CODE)
 		   FROM FESTIVAL
 		   WHERE 1=1
-		<include refid="fsearch"></include>	
 		   AND F_CODE > 0
+		  <include refid="fsearch"></include>	
 	</select>
 	
 	<sql id="fsearch">
 		<if test="searchType != null">
-			<if test="searchType == 'admin'.toString()">AND F_ADMIN LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'name'.toString()">AND F_NAME LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'admin'.toString()">AND F_ADMIN LIKE '%' || #{keyword} || '%' ORDER BY F_STARTDATE DESC</if>
+			<if test="searchType == 'name'.toString()">AND F_NAME LIKE '%' || #{keyword} || '%' ORDER BY F_STARTDATE DESC</if>
 		<!-- <if test="searchType == 'sdate'.toString()"><![CDATA[ AND '${keyword}' < F_STARTDATE ]]></if>  -->	
-			<if test="searchType == 'sdate'.toString()"> AND (TO_DATE(#{keyword},'YYYY-MM-DD') BETWEEN TO_DATE(F_STARTDATE,'YYYY-MM-DD') AND TO_DATE(F_ENDDATE,'YYYY-MM-DD'))</if>
+			<if test="searchType == 'sdate'.toString()"> AND (TO_DATE(#{keyword},'YYYY-MM-DD') BETWEEN TO_DATE(F_STARTDATE,'YYYY-MM-DD') AND TO_DATE(F_ENDDATE,'YYYY-MM-DD')) ORDER BY F_STARTDATE DESC</if>
 		</if>
 	</sql>
 	
@@ -80,12 +80,21 @@
 		  			   ROW_NUMBER() OVER(ORDER BY F_STARTDATE) AS RNUM
 	  		FROM FESTIVAL
 	  		WHERE 1 = 1
-	  		<include refid="fsearch"></include>
 	  		AND F_ADMIN = #{f_admin}
+	  		<include refid="fsearch"></include>
 	  		) FE
 	  		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 	  		
-	  		ORDER BY F_STARTDATE		   
+	  		ORDER BY F_STARTDATE DESC   
   	</select>   
+  	
+  	<select id="flistCountByAdmin" parameterType="kr.co.vo.SearchCriteria" resultType="int">
+		SELECT COUNT(F_CODE)
+		   FROM FESTIVAL
+		   WHERE 1=1
+		   AND F_CODE > 0
+		   AND F_ADMIN = #{f_admin}
+		<include refid="fsearch"></include>	
+	</select>
   
   </mapper>

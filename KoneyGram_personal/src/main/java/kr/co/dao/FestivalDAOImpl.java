@@ -34,6 +34,11 @@ public class FestivalDAOImpl implements FestivalDAO{
 		return sql.selectList("festivalMapper.selectByAdmin", scri);
 	}
 	
+	// listByCount
+	@Override
+	public int listByCount(SearchCriteria scri) throws Exception {
+		return sql.selectOne("festivalMapper.flistCountByAdmin", scri);
+	}
 	
 	
 	

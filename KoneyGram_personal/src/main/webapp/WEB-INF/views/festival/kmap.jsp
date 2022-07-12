@@ -44,22 +44,22 @@
 			</g>
 			<g filter="url(#dropshadow)">
 				<a href = "listfByAdmin?f_admin=서울특별시"><text id="LCD11" class="TEXT" x="156" y="214">서울특별시</text></a>
-				<text id="LCD26" class="TEXT" x="503" y="695">부산광역시</text>
-				<text id="LCD27" class="TEXT" x="418" y="567">대구광역시</text>
-				<text id="LCD28" class="TEXT" x="67" y="177">인천광역시</text>
-				<text id="LCD29" class="TEXT" x="127" y="707">광주광역시</text>
-				<text id="LCD30" class="TEXT" x="221" y="463">대전광역시</text>
-				<text id="LCD31" class="TEXT" x="531" y="622">울산광역시</text>
-				<text id="LCD36" class="TEXT" x="199" y="418">세종특별자치시</text>
-				<text id="LCD41" class="TEXT" x="216" y="245">경기도</text>
-				<text id="LCD42" class="TEXT" x="370" y="179">강원도</text>
-				<text id="LCD43" class="TEXT" x="294" y="381">충청북도</text>
-				<text id="LCD44" class="TEXT" x="105" y="449">충청남도</text>
-				<text id="LCD45" class="TEXT" x="179" y="592">전라북도</text>
-				<text id="LCD46" class="TEXT" x="138" y="764">전라남도</text>
-				<text id="LCD47" class="TEXT" x="447" y="460">경상북도</text>
-				<text id="LCD48" class="TEXT" x="367" y="672">경상남도</text>
-				<text id="LCD50" class="TEXT" x="76" y="1070">제주특별자치도</text>
+				<a href = "listfByAdmin?f_admin=부산광역시"><text id="LCD26" class="TEXT" x="503" y="695">부산광역시</text></a>
+				<a href = "listfByAdmin?f_admin=대구광역시"><text id="LCD27" class="TEXT" x="418" y="567">대구광역시</text></a>
+				<a href = "listfByAdmin?f_admin=인천광역시"><text id="LCD28" class="TEXT" x="67" y="177">인천광역시</text></a>
+				<a href = "listfByAdmin?f_admin=광주광역시"><text id="LCD29" class="TEXT" x="127" y="707">광주광역시</text></a>
+				<a href = "listfByAdmin?f_admin=대전광역시"><text id="LCD30" class="TEXT" x="221" y="463">대전광역시</text></a>
+				<a href = "listfByAdmin?f_admin=울산광역시"><text id="LCD31" class="TEXT" x="531" y="622">울산광역시</text></a>
+				<a href = "listfByAdmin?f_admin=세종특별자치시"><text id="LCD36" class="TEXT" x="199" y="418">세종특별자치시</text></a>
+				<a href = "listfByAdmin?f_admin=경기도"><text id="LCD41" class="TEXT" x="216" y="245">경기도</text></a>
+				<a href = "listfByAdmin?f_admin=강원도"><text id="LCD42" class="TEXT" x="370" y="179">강원도</text></a>
+				<a href = "listfByAdmin?f_admin=충청북도"><text id="LCD43" class="TEXT" x="294" y="381">충청북도</text></a>
+				<a href = "listfByAdmin?f_admin=충청남도"><text id="LCD44" class="TEXT" x="105" y="449">충청남도</text></a>
+				<a href = "listfByAdmin?f_admin=전라북도"><text id="LCD45" class="TEXT" x="179" y="592">전라북도</text></a>
+				<a href = "listfByAdmin?f_admin=전라남도"><text id="LCD46" class="TEXT" x="138" y="764">전라남도</text></a>
+				<a href = "listfByAdmin?f_admin=경상북도"><text id="LCD47" class="TEXT" x="447" y="460">경상북도</text></a>
+				<a href = "listfByAdmin?f_admin=경상남도"><text id="LCD48" class="TEXT" x="367" y="672">경상남도</text></a>
+				<a href = "listfByAdmin?f_admin=제주특별자치도"><text id="LCD50" class="TEXT" x="76" y="1070">제주특별자치도</text></a>
 			</g>
 		</svg>
 	</form>

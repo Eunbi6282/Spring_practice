@@ -49,7 +49,7 @@ public class FestivalController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(fservice.listFCount(scri));
+		pageMaker.setTotalCount(fservice.listByCount(scri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 		

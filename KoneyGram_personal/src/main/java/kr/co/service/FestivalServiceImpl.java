@@ -32,6 +32,14 @@ public class FestivalServiceImpl implements FestivalService{
 	public List<FestivalVO> listByAdmin(SearchCriteria scri) throws Exception {
 		return dao.listByAdmin(scri);
 	}
+
+	//축제 By admin 개수
+	@Override
+	public int listByCount(SearchCriteria scri) throws Exception {
+		return dao.listByCount(scri);
+	}
+	
+	
 	
 	
 	

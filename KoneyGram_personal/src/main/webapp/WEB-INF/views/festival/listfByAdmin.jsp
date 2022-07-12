@@ -27,7 +27,6 @@
 			<div class="search">
 			    <select name="searchType" id="searchType" onchange = "dateChange()">
 			      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-			      <option value="admin"<c:out value="${scri.searchType eq 'admin' ? 'selected' : ''}"/>>지역</option>
 			      <option value="name"<c:out value="${scri.searchType eq 'name' ? 'selected' : ''}"/>>축제 이름</option>
 			      <option value="sdate" <c:out value="${scri.searchType eq 'sdate' ? 'selected' : ''}"/>>시작일</option>
 			    </select>
@@ -49,7 +48,7 @@
 			    <script>
 			      $(function(){
 			        $('#searchBtn').click(function() {
-			          self.location = "listfByAdmin" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+			          self.location = "listfByAdmin" + '${pageMaker.makeQuery(1)}' + "&f_admin=" + '${list[0].f_admin }'+"&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 			        });
 			      });   
 			    </script>
@@ -79,15 +78,15 @@
 					<div>
 						<ul>
 						    <c:if test="${pageMaker.prev}">
-						    	<li><a href="listfByAdmin${pageMaker.makeSearch(pageMaker.startPage - 1)}}">이전</a></li>
+						    	<li><a href="listfByAdmin${pageMaker.makeSearch(pageMaker.startPage - 1)}&f_admin=${list[0].f_admin }}">이전</a></li>
 						    </c:if> 
 						
 						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-						    	<li><a href="listfByAdmin${pageMaker.makeSearch(idx)}&f_admin='서울특별시'">${idx}</a></li>
+						    	<li><a href="listfByAdmin${pageMaker.makeSearch(idx)}&f_admin=${list[0].f_admin }">${idx}</a></li>
 						    </c:forEach>
 						
 						    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						    	<li><a href="listfByAdmin${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+						    	<li><a href="listfByAdmin${pageMaker.makeSearch(pageMaker.endPage + 1)}&f_admin=${list[0].f_admin }">다음</a></li>
 						    </c:if> 
 						</ul>
 					</div>
