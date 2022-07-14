@@ -56,6 +56,14 @@ public class FestivalController {
 		return "festival/listfByAdmin";
 		
 	}
+	
+	/*
+	 * @RequestMapping(value = "/readViewF" ,method = RequestMethod.GET) public
+	 * String mapF {
+	 * 
+	 * 
+	 * }
+	 */
 		
 	
 }
