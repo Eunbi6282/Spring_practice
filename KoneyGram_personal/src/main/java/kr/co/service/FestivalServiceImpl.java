@@ -38,6 +38,12 @@ public class FestivalServiceImpl implements FestivalService{
 	public int listByCount(SearchCriteria scri) throws Exception {
 		return dao.listByCount(scri);
 	}
+
+	//read
+	@Override
+	public FestivalVO read(int f_code) throws Exception {
+		return dao.read(f_code);
+	}
 	
 	
 	

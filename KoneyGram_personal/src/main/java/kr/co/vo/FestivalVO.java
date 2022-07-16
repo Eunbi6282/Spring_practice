@@ -16,8 +16,8 @@ public class FestivalVO {
 	private String f_roadaddress;
 	private String f_admin;
 	private String f_gnumaddress;
-	private int f_ny;
-	private int f_nx;
+	private double f_ny;
+	private double f_nx;
 	
 	
 	public int getF_code() {
@@ -110,16 +110,16 @@ public class FestivalVO {
 	public void setF_gnumaddress(String f_gnumaddress) {
 		this.f_gnumaddress = f_gnumaddress;
 	}
-	public int getF_ny() {
+	public double getF_ny() {
 		return f_ny;
 	}
-	public void setF_ny(int f_ny) {
+	public void setF_ny(double f_ny) {
 		this.f_ny = f_ny;
 	}
-	public int getF_nx() {
+	public double getF_nx() {
 		return f_nx;
 	}
-	public void setF_nx(int f_nx) {
+	public void setF_nx(double f_nx) {
 		this.f_nx = f_nx;
 	}
 	@Override

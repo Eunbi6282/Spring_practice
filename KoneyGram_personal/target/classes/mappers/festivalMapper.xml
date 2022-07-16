@@ -96,5 +96,13 @@
 		   AND F_ADMIN = #{f_admin}
 		<include refid="fsearch"></include>	
 	</select>
-  
+	
+	<select id = "readFestival" resultType ="kr.co.vo.FestivalVO">
+		SELECT
+			F_NAME, F_STARTDATE, F_ENDDATE, F_MAINC, F_TEL, F_HOME, F_CONTENT
+		FROM FESTIVAL
+		WHERE F_CODE = #{f_code}
+	</select>
+	
+	
   </mapper>

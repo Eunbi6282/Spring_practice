@@ -57,6 +57,7 @@
 					
 			<section id="container">
 				<form role="form" method="get">
+				
 					<table>
 						<tr><th>축제 이름</th><th>장소</th><th>시작일</th><th>종료일</th><th>전화번호</th></tr>
 						
@@ -65,7 +66,10 @@
 							<tr>
 								<td><c:out value="${list.f_name}" /></td>
 								<td>
-									<a href="#"><c:out value="${list.f_place}" /></a>
+									<input type="hidden" id = "f_code" name = "f_code" value = "${list.f_code }">
+									<input type="hidden" id = "f_ny" name = "f_ny" value = "${list.f_ny }">
+									<input type="hidden" id = "f_nx" name = "f_nx" value = "${list.f_nx }">
+									<a href="./readViewF?f_code=${list.f_code }&f_ny=${list.f_ny}&f_nx=${list.f_nx}"><c:out value="${list.f_place}" /></a>
 								</td>
 								<td><c:out value="${list.f_startdate}" /></td>
 								<td><c:out value="${list.f_enddate }"/></td>

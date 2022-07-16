@@ -40,6 +40,12 @@ public class FestivalDAOImpl implements FestivalDAO{
 		return sql.selectOne("festivalMapper.flistCountByAdmin", scri);
 	}
 	
+	//read
+	@Override
+	public FestivalVO read(int f_code) throws Exception {
+		return sql.selectOne("festivalMapping.readFestival", f_code);
+	}
+	
 	
 	
 	

@@ -19,5 +19,8 @@ public interface FestivalDAO {
 	//축제 By admin 개수
 	public int listByCount(SearchCriteria scri) throws Exception;
 	
+	//축제 read
+	public FestivalVO read(int f_code) throws Exception;
+	
 	
 }

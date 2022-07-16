@@ -17,4 +17,7 @@ public interface FestivalService {
 	
 	//축제 By admin 개수
 	public int listByCount(SearchCriteria scri) throws Exception;
+	
+	//read
+	public FestivalVO read(int f_code) throws Exception;
 }

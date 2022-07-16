@@ -17,7 +17,7 @@ import kr.co.vo.PageMaker;
 import kr.co.vo.SearchCriteria;
 
 @Controller
-@RequestMapping("/festival")
+@RequestMapping("/festival/*")
 public class FestivalController {
 	private static final Logger logger = LoggerFactory.getLogger(FestivalController.class);
 	
@@ -57,13 +57,17 @@ public class FestivalController {
 		
 	}
 	
-	/*
-	 * @RequestMapping(value = "/readViewF" ,method = RequestMethod.GET) public
-	 * String mapF {
-	 * 
-	 * 
-	 * }
-	 */
+	
+	 @RequestMapping(value = "/readViewF" ,method = RequestMethod.GET)
+	 public String read(FestivalVO vo, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		 logger.info("read");
+		 
+		 model.addAttribute("read", fservice.read(vo.getF_code()));
+		 model.addAttribute("scri", scri);
+		 
+		 return "festival/readViewF";
+	 }
+	 
 		
 	
 }
